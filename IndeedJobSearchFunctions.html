@@ -69,7 +69,7 @@ img {
 
 
 <p>If you need job listing data, Indeed.com is a natural choice. It is one of the most popular job sites on the Internet and has listings from a wide range of industries. Indeed has APIs for things like affiliate widgets, but nothing that allows one to directly download a list of job results. Fortunately, the URL structure and site layout is fairly straighforward and lends itself to webscraping.</p>
-<p>The following functions wrap <a href="https://cran.r-project.org/web/packages/rvest/index.html">rvest</a> capabilites for use on Indeed.com. A write up of the project that required these, including more detailed examples, will follow at some point. For now, I think the use of these functions is straightforward enough without much documentation. If not, email me or ask questions in the comments. <br></p>
+<p>The following functions wrap <a href="https://cran.r-project.org/web/packages/rvest/index.html">rvest</a> capabilites for use on Indeed.com. A write up of the project that required these, including more detailed examples, will follow at some point. For now, I think the use of these functions is straightforward enough without much documentation. If not, email me or ask questions in the comments. <br> <br></p>
 <div id="get-the-job-results---this-may-take-a-couple-of-minutes" class="section level4">
 <h4>Get the job results - this may take a couple of minutes</h4>
 <pre class="r"><code>jobResultsList = getJobs(&quot;JavaScript&quot;, nPages=10, includeSponsored = FALSE, showProgress = FALSE)
@@ -106,11 +106,11 @@ head(orderedTables[[&quot;JavaScript&quot;]][[&quot;Titles&quot;]], 5)</code></p
 ## 26     front   29</code></pre>
 <pre class="r"><code>head(orderedTables[[&quot;JavaScript&quot;]][[&quot;Summaries&quot;]], 5)</code></pre>
 <pre><code>##           Var1 Freq
-## 287 javascript  127
-## 249       html   47
-## 185 experience   45
-## 113        css   40
-## 574        web   31</code></pre>
+## 277 javascript  128
+## 179 experience   45
+## 241       html   44
+## 112        css   37
+## 563        web   32</code></pre>
 <p><br></p>
 </div>
 <div id="create-a-flat-file-from-the-aggregated-data-for-easier-manipulation-and-plotting" class="section level4">
