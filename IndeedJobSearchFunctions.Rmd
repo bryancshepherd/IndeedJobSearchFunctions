@@ -1,0 +1,50 @@
+---
+title: "Indeed.com Job Search Functions"
+author: "Bryan Shepherd (@bryancshepherd)"
+date: "January 17, 2016"
+output: html_document
+---
+
+
+If you need job listing data, Indeed.com is a natural choice. It is one of the most popular job sites on the Internet and has listings from a wide range of industries. Indeed has APIs for things like affiliate widgets, but nothing that allows one to directly download a list of job results. Fortunately, the URL structure and site layout is fairly straighforward and lends itself to webscraping. 
+
+The following functions wrap [rvest](https://cran.r-project.org/web/packages/rvest/index.html) capabilites for use on Indeed.com. A write up of the project that required these, including more detailed examples, will follow at some point. For now, I think the use of these functions is straightforward enough without much documentation. If not, email me or ask questions in the comments.
+<br>
+<br>
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+source("jobSearchFunctions.R")
+```
+
+#### Get the job results - this may take a couple of minutes
+```{r}
+jobResultsList = getJobs("JavaScript", nPages=10, includeSponsored = FALSE, showProgress = FALSE)
+head(jobResultsList[["JavaScript"]][["Titles"]], 5)
+head(jobResultsList[["JavaScript"]][["Summaries"]], 5)
+```
+<br>
+
+#### Collapse all of the terms into a large list and remove stopwords
+```{r}
+cleanedJobData = cleanJobData(jobResultsList)
+head(cleanedJobData[["JavaScript"]][["Titles"]], 5)
+head(cleanedJobData[["JavaScript"]][["Summaries"]], 5)
+```
+<br>
+
+#### Create ordered wordlists for titles and descriptions
+```{r}
+orderedTables = createWordTables(cleanedJobData)
+head(orderedTables[["JavaScript"]][["Titles"]], 5)
+head(orderedTables[["JavaScript"]][["Summaries"]], 5)
+```
+<br>
+
+#### Create a flat file from the aggregated data for easier manipulation and plotting
+```{r}
+flatFile = createFlatFile(orderedTables)
+head(flatFile, 5)
+```
+
+
+

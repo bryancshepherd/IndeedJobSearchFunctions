@@ -3,19 +3,23 @@
 # Twitter: @bryancshepherd
 # Github: bryancshepherd
 
-# install.packages("rvest")
-# install.packages("tm")
-# install.packages("wordcloud")
-library("rvest")
-library("tm")
-library("wordcloud")
-library("ggplot2")
+# install.packages("rvest") # required for webscraping
+# install.packages("tm") # required for stopwords list
+library("rvest") 
+library("tm") 
 
-
-# Function to get a list of job postings for a given term and number of pages
+# Get a list of job postings for a given term and number of pages
 # There are usually 5 sponsored and 10 unsponsored listings per page
-# There's an argument for not including sponsored results, as their influence will increase as more pages are parsed
-getJobs = function(terms, nPages, includeSponsored=FALSE) {
+# Sposored listings may be duplicated across pages. 
+# This may take a while, depending on the number of terms searched and results requested
+getJobs = function(terms, nPages, includeSponsored=FALSE, showProgress = TRUE) {
+  
+  if(showProgress) {
+    print("Fetching jobs...")
+    iters = 0
+    maxIters = nPages*length(terms)
+    pb = txtProgressBar(min = 0, max = maxIters, initial = 0, char = "|", style = 3) 
+  }
   
   jobResults = {}
   for (term in terms) {
@@ -54,6 +58,11 @@ getJobs = function(terms, nPages, includeSponsored=FALSE) {
       
       # All of the summaries (unsponsored and sponsored) can be pulled at once.
       allSummaries = append(allSummaries, tempSummaries)
+      
+      if(showProgress) {
+        iters = iters+1
+        setTxtProgressBar(pb,iters)
+      }
       
     }
     jobResults[[term]] = list(Titles = allTitles, Summaries = allSummaries)
