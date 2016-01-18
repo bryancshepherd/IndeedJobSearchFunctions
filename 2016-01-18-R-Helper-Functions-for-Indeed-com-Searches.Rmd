@@ -1,14 +1,21 @@
 ---
-title: "Indeed.com Job Search Functions"
-author: "Bryan Shepherd (@bryancshepherd)"
-date: "January 17, 2016"
-output: html_document
+layout: post
+title: "R Helper Functions for Indeed.com Searches"
+author: bryan
+date: 2016-01-18
+comment: true
+categories: [Articles]
+published: true
+noindex: false
+output:
+  md_document:
+    variant: markdown_github
 ---
 
 
-If you need job listing data, Indeed.com is a natural choice. It is one of the most popular job sites on the Internet and has listings from a wide range of industries. Indeed has APIs for things like affiliate widgets, but nothing that allows one to directly download a list of job results. Fortunately, the URL structure and site layout is fairly straighforward and lends itself to webscraping. 
+If you need job listing data, Indeed.com is a natural choice. It is one of the most popular job sites on the Internet and has listings from a wide range of industries. Indeed has APIs for things like affiliate widgets, but nothing that allows one to directly download a list of job results. Fortunately, the URL structure and site layout are fairly straightforward and lend themselves to easy webscraping. 
 
-The following functions wrap [rvest](https://cran.r-project.org/web/packages/rvest/index.html) capabilites for use on Indeed.com. A write up of the project that required these, including more detailed examples, will follow at some point. For now, I think the use of these functions is straightforward enough without much documentation. If not, email me or ask questions in the comments.
+The following functions wrap [rvest](https://cran.r-project.org/web/packages/rvest/index.html) capabilities for use on Indeed.com. A write up of the project that required these, including more detailed examples, will follow at some point. For now, I think the use of these functions is straightforward enough without much documentation. If not, email me or ask questions in the comments.
 
 [GitHub repo is here](https://github.com/bryancshepherd/IndeedJobSearchFunctions.git). 
 <br>
